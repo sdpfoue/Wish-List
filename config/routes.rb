@@ -1,4 +1,22 @@
 MongoSrc::Application.routes.draw do
+
+  get "index/index"
+
+  get "user/reg"
+
+  get "user/create"
+
+  get "user/show"
+  
+  resources :users, :controller=>'user',:only=>[:create]
+  
+  
+  controller :sessions do
+    get  'login' => :new
+    post 'login' => :create
+    delete 'logout' => :destroy
+  end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -49,6 +67,7 @@ MongoSrc::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
+  root :to => "index#index", :as=>'index'
 
   # See how all your routes lay out with "rake routes"
 

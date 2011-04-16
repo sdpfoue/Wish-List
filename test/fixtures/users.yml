@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  password: MyString
+  remember_token: MyString
+  remember_token_expires_at: 2011-04-13 18:52:55
+  banned: false
+
+two:
+  name: MyString
+  email: MyString
+  password: MyString
+  remember_token: MyString
+  remember_token_expires_at: 2011-04-13 18:52:55
+  banned: false

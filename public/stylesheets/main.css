@@ -1,0 +1,92 @@
+body, td, th {
+  font: 12px Arial, Helvetica, sans-serif;
+  line-height: 162%;
+}
+
+a:link {
+  text-decoration: none;
+ 
+}
+a:hover{text-decoration:underline;color:#039}
+a:active{text-decoration:underline;color:#039}
+a:visited{text-decoration:none;color:#039}
+a {
+  cursor: pointer;
+}
+
+ul  {
+list-style-type: none;
+margin: 0;
+padding: 0;
+}
+#user-info .info ul li {
+display: inline;
+margin-right: 1em;
+}
+
+a img { border-width:0; }
+
+h1 { word-wrap: break-word; display: block; font-size: 25px; font-weight: bold; color: #494949; margin:0; padding: 0 0 15px 0;line-height:1.1; }
+
+table { border-collapse:collapse; border: none; padding: 0; margin: 0; }
+
+div {
+  display: block;
+}
+
+#nav-user-info {
+  float: right;
+  margin-top: 5px;
+}
+#nav-items {
+  float: left;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+#nav-items li{
+float: left;
+display: inline;
+margin: 2px 20px 0 0;
+}
+
+#container {
+  width: 950px;
+  margin: 0 auto;
+}
+.clear{
+  clear: both;
+  line-height: 0;
+  font-size: 0;
+}
+
+#header {
+  width: 100%;
+  margin: 0 0 40px 0;
+  background: none;
+  border-bottom: 1px dashed #BBB;
+}
+
+#content {
+  min-height: 420px;
+}
+
+.main{
+  float: left;
+  width: 590px;
+  padding-right: 40px;
+}
+
+.side {
+  float: right;
+  width: 310px;
+}
+
+#footer {
+  color: #999;
+  padding-top: 6px;
+  margin-top: 40px;
+  overflow: auto;
+  zoom: 1;
+  border-top: 1px dashed #BBB;
+}

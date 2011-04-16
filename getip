@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iprecoder</title>
+  <link href="/stylesheets/all.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/prototype.js?1301624577" type="text/javascript"></script>
+<script src="/javascripts/effects.js?1301624577" type="text/javascript"></script>
+<script src="/javascripts/dragdrop.js?1301624577" type="text/javascript"></script>
+<script src="/javascripts/controls.js?1301624577" type="text/javascript"></script>
+<script src="/javascripts/rails.js?1301624577" type="text/javascript"></script>
+<script src="/javascripts/application.js?1301624577" type="text/javascript"></script>
+  <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="DNIGYyXElw8EXtVhBHqAsKv9D1AaeXBHOWp9gleYacw="/>
+</head>
+<body>
+
+
+
+</body>
+</html>

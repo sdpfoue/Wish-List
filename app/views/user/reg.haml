@@ -1,0 +1,26 @@
+= form_for @user do |f|
+  - if !@user.errors.blank?
+    = render :partial => 'share/error_messages', :locals => {:object => f.object}
+  .field
+    = f.label :name
+    %br/
+    = f.text_field :name, :class => 'text'
+    .tips= t '.name_tips'
+  .field
+    = f.label :email
+    %br/
+    = f.text_field :email, :class => 'text'
+    .tips= t '.email_tips'
+  .field
+    = f.label :psd
+    %br/
+    = f.password_field :psd, :class => 'text'
+    .tips= t '.password_tips'
+  .field
+    = f.label :password_confirmation
+    %br/
+    = f.password_field :password_confirmation, :class => 'text'
+  .field
+    = f.submit t('.signup'), :class => 'button'
+    = f.check_box :remember_me
+    %span.tips= f.label :remember_me, t('.remember_me_tips')

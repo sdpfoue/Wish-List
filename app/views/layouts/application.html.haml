@@ -1,0 +1,48 @@
+!!! 5
+%html
+  %head
+    -if @page_title
+      %title= @page_title+' 心愿空间'
+    -else
+      %title='心愿空间'
+    =stylesheet_link_tag :all
+    =javascript_include_tag :defaults
+    =csrf_meta_tag
+  %body
+    #container
+      #header
+        #nav-items
+          %ul
+            %li=link_to "首页",index_url
+            - if @loged
+              %li="我的首页"
+              %li="我的心愿单"
+        #nav-user-info
+          - if @loged
+            =link_to @user_name,index_url
+            =link_to "注销", logout_url,:method=>'delete'
+          -else
+            ='登陆'
+            
+        %br.clear
+      #content
+        .main
+          - if flash[:success]
+            .success.flash
+              = flash[:success]
+              %span.close x
+          - if flash[:error]
+            .error.flash
+              = flash[:error]
+              %span.close x
+          - if flash[:notice]
+            .notice.flash
+              = flash[:notice]
+              %span.close x
+          =yield
+        .rside
+          =yield :rside
+      %br.clear
+      #footer
+        ='联系我们 免责声明'
+          

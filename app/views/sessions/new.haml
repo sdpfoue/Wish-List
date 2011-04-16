@@ -1,0 +1,18 @@
+.depot_form
+  -if flash[:alert]
+    %p#alert= flash[:alert]
+    
+  =form_tag do
+    %fieldset
+      %legend 用户登陆
+      %div
+        %label{:for=>'email'}电子邮件:
+        =text_field_tag :email, params[:email]
+      %div
+        %label{:for=>'password'}密码：
+        = password_field_tag :password, params[:password]
+      %div
+        = submit_tag "Login" 
+        |
+        =link_to "新用户注册", 'user/reg'
+

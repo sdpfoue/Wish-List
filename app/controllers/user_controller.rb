@@ -1,7 +1,7 @@
 #encoding: utf-8
 
 class UserController < ApplicationController
-  skip_before_filter :ifLogedin,:only=>[:reg,:create]
+  skip_before_filter :ifLoggedin,:only=>[:reg,:create]
   
   def reg
     @user=User.new

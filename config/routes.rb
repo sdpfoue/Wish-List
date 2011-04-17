@@ -2,13 +2,15 @@ MongoSrc::Application.routes.draw do
 
   get "index/index"
 
-  get "user/reg"
-
-  get "user/create"
-
-  get "user/show"
+  get '/reg', :controller=>'user',:action=>'reg'
   
-  resources :users, :controller=>'user',:only=>[:create]
+  resources :users, :controller=>'user',:only=>[:create] do
+    member do
+     # get 'reg'
+    end
+  end
+  
+
   
   
   controller :sessions do

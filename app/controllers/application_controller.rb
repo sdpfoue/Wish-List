@@ -2,7 +2,7 @@
 
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :set_locale,:ifLogedin,:setsession
+  before_filter :set_locale,:ifLoggedin,:setsession
   
   
   def set_locale
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     @page_title = value+' - '
   end
   
-  def loged?
+  def logged?
     !!session[user_id]
   end
   
@@ -49,14 +49,14 @@ class ApplicationController < ActionController::Base
   end
   
   protected
-    def ifLogedin
+    def ifLoggedin
       unless session[:user_id]
         flash[:url]=request.url
         redirect_to login_url, :notice => "请先登陆"
       end
     end
    def setsession
-     @loged=true if session[:user_id]
+     @logged=true if session[:user_id]
      @user_name=session[:user_name]
    end
   

@@ -14,11 +14,11 @@
         #nav-items
           %ul
             %li=link_to "首页",index_url
-            - if @loged
+            - if @logged
               %li="我的首页"
               %li="我的心愿单"
         #nav-user-info
-          - if @loged
+          - if @logged
             =link_to @user_name,index_url
             =link_to "注销", logout_url,:method=>'delete'
           -else

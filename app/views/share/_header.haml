@@ -1,5 +1,6 @@
-=link_gravatar_to_person @user
+
 #user-info
+  .avatar=link_gravatar_to_person @user
   .info
     %ul
       %li=link_to @user.name+'的主页',user_url(@user.id)

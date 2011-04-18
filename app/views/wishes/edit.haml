@@ -1,0 +1,6 @@
+%h1 修改心愿
+= render 'form'
+
+= link_to '放弃修改', @wish 
+|
+= link_to '返回空间"'+@space[:name]+'"', space_url(@space)

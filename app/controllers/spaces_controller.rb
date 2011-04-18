@@ -6,9 +6,9 @@ class SpacesController < ApplicationController
     @spaces = @user.spaces.all
     if params[:user_id].to_s==session[:user_id].to_s
       @isowner=true 
-      @h1='我的心愿单'
+      @h1='我的愿望空间'
     else
-      @h1=@user.name+' 的心愿单'
+      @h1=@user.name+' 的愿望空间'
     end
     respond_to do |format|
       format.html # index.html.erb
@@ -22,6 +22,8 @@ class SpacesController < ApplicationController
     @isowner=true if @user.id==session[:user_id]
     @h1=@user.name+' 的空间 '+@space.name
     @wishes=@space.wishes.all
+    flash[:id]=@space.id
+    @comments=@space.comments.all
   end
   
   def new
@@ -67,6 +69,28 @@ class SpacesController < ApplicationController
       flash[:success]='成功删除'
       redirect_to user_spaces_url(session[:user_id])
       end
+  end
+  
+  def comment
+    if request.post?
+      redirect_to user_spaces_url(session[:user_id]) and return unless flash[:id]
+      @space=Space.find(flash[:id])
+      @comment=@space.comments.new(:content=>params[:comment])
+      @comment.user_id=session[:user_id]
+      @comment.save
+      redirect_to space_url(@space)
+    end
+    
+    if request.delete?
+      redirect_to user_spaces_url(session[:user_id]) and return unless flash[:id]
+      @space=Space.find(flash[:id])
+      @comment=@space.comments.find(params[:cid])
+      redirect_to space_url(@space) and return unless @space.user_id==session[:user_id] || 
+                                                   @comment.user_id==session[:user_id]
+      @comment.destroy
+      redirect_to space_url(@space)
+    end
+  
   end
   
   private

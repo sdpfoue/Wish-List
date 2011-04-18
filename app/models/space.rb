@@ -8,6 +8,7 @@ class Space
   field :wishes_count, :type=>Integer, :default=>0
   
   references_many :wishes, :dependent => :delete
+  references_many :comments,:dependent=>:delete,:class_name=>'Comment::Space'
   referenced_in :user
   referenced_in :claimed_by, :class_name=>'User'
   

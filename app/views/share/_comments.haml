@@ -1,0 +1,20 @@
+#comments
+  -if @comments&&@comments.count>0
+    %h3=@comments.count.to_s+'条评论'
+    -@comments.each do |comment|
+      %p
+        =comment.created_at
+        =comment.user.name
+        -if comment.user_id==session[:user_id]||@isowner
+          =link_to '删除',{:action=>'comment',:cid=>comment.id},{:confirm=>'确认删除？',:method=>:delete}
+      %p=comment.content
+      %hr
+  -else
+    %h3 还没有评论，快来抢沙发吧
+  =form_tag :action=>'comment' do
+    我要评论：
+    %br
+    =text_area_tag(:comment, "", :size => "60x6") 
+    %br
+    = submit_tag "放上去"    
+

@@ -5,9 +5,12 @@ MongoSrc::Application.routes.draw do
   get "index/index"
 
   get '/reg', :controller=>'user',:action=>'reg'
+  
 
   resources :wishes,:except=>:new do
-    member do
+    collection do
+      post 'comment'
+      delete 'comment'
     end
   end
   
@@ -19,9 +22,9 @@ MongoSrc::Application.routes.draw do
   end
   
   resources :spaces do
-    member do
-      post 'show'
-      #delete 'show'
+    collection do
+      post 'comment'
+      delete 'comment'
     end  
   end
   

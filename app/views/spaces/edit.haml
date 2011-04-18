@@ -1,0 +1,7 @@
+%h1 编辑空间
+
+= render 'form'
+
+= link_to '放弃修改', @wishlist
+=' | '
+= link_to '我的心愿单', user_spaces_url(session[:user_id])

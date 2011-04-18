@@ -1,0 +1,32 @@
+=render 'share/header'
+
+- if @isowner
+  - unless @spaces && @spaces.count>0
+    您还没有创建愿望空间，
+    =link_to '点此创建您的第一个空间', new_space_url
+
+  - else
+    =link_to '创建新的空间', new_space_url
+    %br/
+-else
+  他还没有创建空间
+- @spaces.each do |s|
+  名称：
+  =link_to s.name, space_url(s)
+  %br/
+  描述：
+  =s.des 
+  %br/
+  创建于：
+  =s.created_at
+  %br/
+  -if @isowner
+    =link_to '添加心愿',{:controller=>'wishes',:action=>'new',:s=>s}
+    =' | '
+    =link_to '编辑', edit_space_url(s)
+    =' | '
+    =link_to '删除', s, :confirm => '确定删除？', :method => :delete
+  %hr/
+  
+
+

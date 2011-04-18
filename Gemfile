@@ -4,6 +4,7 @@ gem 'rails', '3.0.6'
 gem 'mongoid'
 gem 'bson_ext'
 gem 'haml'
+gem 'gravtastic'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

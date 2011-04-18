@@ -206,6 +206,6 @@ zh-CN:
     select:
       prompt: "请选择"
     submit:
-      create: "提交"
-      update: "更新"
-      submit: "储存"
+      create: "新增%{model}"
+      update: "更新%{model}"
+      submit: "储存%{model}"

@@ -1,0 +1,7 @@
+=link_gravatar_to_person @user
+#user-info
+  .info
+    %ul
+      %li=link_to @user.name+'的主页',user_url(@user.id)
+      %li=link_to '愿望空间',user_spaces_url(@user)
+    %h1=@h1

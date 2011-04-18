@@ -3,6 +3,12 @@ body, td, th {
   line-height: 162%;
 }
 
+textarea {
+border: 1px solid #CCC;
+padding: 3px;
+font-size: 14px;
+}
+
 a:link {
   text-decoration: none;
  

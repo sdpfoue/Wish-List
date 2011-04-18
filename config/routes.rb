@@ -1,14 +1,30 @@
 MongoSrc::Application.routes.draw do
 
+  match 'space/:s/wish/new' =>'wishes#new'
+
   get "index/index"
 
   get '/reg', :controller=>'user',:action=>'reg'
+
+  resources :wishes,:except=>:new do
+    member do
+    end
+  end
   
-  resources :users, :controller=>'user',:only=>[:create] do
+  resources :users, :controller=>'user',:only=>[:create,:show] do 
+    resources :spaces
     member do
      # get 'reg'
     end
   end
+  
+  resources :spaces do
+    member do
+      post 'show'
+      #delete 'show'
+    end  
+  end
+  
   
 
   

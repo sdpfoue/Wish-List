@@ -1,0 +1,28 @@
+-content_for :rside do
+  rside
+
+=render 'share/header'
+%p{'style'=>"margin:0px;"}
+  =@space.created_at 
+  创建
+  
+%p
+  %b 空间介绍
+  = @space.des
+  %br/
+  =link_to '添加愿望', {:controller=>'wishes',:action=>'new',:s=>@space.id}
+
+-if @wishes
+  -@wishes.each do |wish|
+    名称：
+    =link_to wish.name,wish_url(wish)
+    %br/
+    描述：
+    =wish.des
+    %br/
+    -if @isowner
+      =link_to '编辑', edit_wish_path(wish)
+      |
+      =link_to '删除', wish, :confirm => '确定删除？', :method => :delete 
+      %br/
+    %hr

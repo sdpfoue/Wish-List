@@ -1,7 +1,7 @@
 #encoding:utf-8
 
 class SessionsController < ApplicationController
-  skip_filter :ifLoggedin
+  skip_filter :ifLoggedin,:set_redirect_url
   
   def new
     flash[:url]=flash[:url] #取得登陆前页面URL并传给create

@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :set_locale,:ifLoggedin,:setsession
-  
+ 
   
   def set_locale
     #I18n.locale = extract_locale_from_user_config || extract_locale_from_accept_language_header || I18n.default_locale

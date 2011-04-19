@@ -3,6 +3,8 @@ MongoSrc::Application.routes.draw do
   match 'space/:s/wish/new' =>'wishes#new'
 
   get "index/index"
+  
+  delete '/timeline/:id',:controller=>'timeline', :action=>'del'
 
   get '/reg', :controller=>'user',:action=>'reg'
   

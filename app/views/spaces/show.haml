@@ -25,6 +25,11 @@
     描述：
     =wish.des
     %br/
+    -if wish.comments_counter>0
+      =wish.comments_counter
+      条评论
+    -else
+      还没有评论
     -if @isowner
       =link_to '编辑', edit_wish_path(wish)
       |

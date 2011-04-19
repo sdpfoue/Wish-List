@@ -1,6 +1,6 @@
 #comments
-  -if @comments&&@comments.count>0
-    %h3=@comments.count.to_s+'条评论'
+  -if @comments&&@comments_counter>0
+    %h3=@comments_counter.to_s+'条评论'
     -@comments.each do |comment|
       %p
         =comment.created_at

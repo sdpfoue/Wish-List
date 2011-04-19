@@ -47,6 +47,7 @@ class WishesController < ApplicationController
     @isowner=true if @wish.user_id==session[:user_id]
     @h1=@wish.name+' - '+@wish.user.name+'的心愿单'
     @comments=@wish.comments.all
+    @comments_counter=@wish.comments_counter
   end
   
   def destroy

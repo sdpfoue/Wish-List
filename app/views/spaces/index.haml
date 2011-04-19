@@ -14,6 +14,12 @@
   名称：
   =link_to s.name, space_url(s)
   %br/
+  -if s.wishes_counter>0
+    =s.wishes_counter
+    个愿望
+  -else
+    这个空间还没有愿望
+  %br
   描述：
   =s.des 
   %br/

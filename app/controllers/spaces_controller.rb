@@ -24,6 +24,7 @@ class SpacesController < ApplicationController
     @wishes=@space.wishes.all
     flash[:id]=@space.id
     @comments=@space.comments.all
+    @comments_counter=@space.comments_counter
   end
   
   def new

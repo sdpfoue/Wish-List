@@ -125,3 +125,7 @@ min-height: 55px;
 overflow: hidden;
 margin: 5px 0 5px 0;
 }
+.broadsmr {
+padding: 5px 24px;
+color: #999;
+}

@@ -7,7 +7,7 @@ class Comment::Space<Comment::Base
   
 protected
   def update_timeline
-    @t=timeline.new(user_id=>space.user.id,:space_id=>space.id,:comment_id=>self.id,
+    @t=timeline.new(:user_id=>space.user.id,:space_id=>space.id,:comment_id=>self.id,
                  :user_name=>space.user.name, :space_name=>space.name, :content=>self.content)
     @t.save
   end

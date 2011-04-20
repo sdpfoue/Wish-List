@@ -15,7 +15,7 @@
           %ul
             %li=link_to "首页",index_url
             - if @logged
-              %li="我的首页"
+              %li=link_to "我的首页", user_url(session[:user_id])
               %li=link_to "我的愿望空间", :controller=>'spaces',:action=>'index',:user_id=>session[:user_id]
         #nav-user-info
           - if @logged

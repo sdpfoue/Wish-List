@@ -16,6 +16,12 @@ module ApplicationHelper
       link_to(t.user_name, user_url(t.user_id))+' 创建了新空间 '+
         link_to(t.space_name,space_url(t.space_id))
     end
+    
+    #when Timeline::Spacecomment
+      #link_to(t.user_name, user_url(t.user_id))+' 添加了评论到空间 '+
+      #  link_to(t.space_name,space_url(t.space_id))
+    #end
+    
   end
   
 end

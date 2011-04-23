@@ -1,4 +1,7 @@
 =content_for :rside do
-  dsfkj
+  =link_to '关注他', :controller=>'follow',:action=>'fo',:id=>@user.id
 
 =render 'share/header'
+
+-@followers.each do |f|
+  =f.user.name

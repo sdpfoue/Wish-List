@@ -74,7 +74,7 @@ class SpacesController < ApplicationController
   
   def comment
     if request.post?
-      redirect_to user_spaces_url(session[:user_id]) and return unless flash[:id]
+      flash[:error]='失败，请重试' and redirect_to :back and return unless flash[:id]
       @space=Space.find(flash[:id])
       @comment=@space.comments.new(:content=>params[:comment])
       @comment.user_id=session[:user_id]
@@ -83,7 +83,7 @@ class SpacesController < ApplicationController
     end
     
     if request.delete?
-      redirect_to user_spaces_url(session[:user_id]) and return unless flash[:id]
+      redirect_to :back,:error=>'sdf' and return unless flash[:id]
       @space=Space.find(flash[:id])
       @comment=@space.comments.find(params[:cid])
       redirect_to space_url(@space) and return unless @space.user_id==session[:user_id] || 

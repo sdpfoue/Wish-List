@@ -59,5 +59,10 @@ class ApplicationController < ActionController::Base
      @logged=true if session[:user_id]
      @user_name=session[:user_name]
    end
+   
+  def redirect_back
+    redirect_to :back and return if :back
+    redirect_to index_url 
+  end
   
 end

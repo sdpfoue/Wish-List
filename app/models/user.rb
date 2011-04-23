@@ -39,6 +39,13 @@ class User
     end
   end
   
+  def get_followers
+    Follow.all_in(following_id:[id])
+  end
+  
+  def get_following
+    Follow.all_in(user_id:[id])
+  end
 
   def remember_me_for(time)
     self.remember=true

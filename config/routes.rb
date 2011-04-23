@@ -1,6 +1,8 @@
 MongoSrc::Application.routes.draw do
 
   match 'space/:s/wish/new' =>'wishes#new'
+  
+  get 'follow/fo/:id', :action=>'fo',:controller=>'follow'
 
   get "index/index"
   

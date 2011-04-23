@@ -24,8 +24,12 @@ module ApplicationHelper
   end
   
   def follow_button(user)
-    return if user.id=session[:user_id]
-    if Follow.find(:user=>session[:user_id],:following=>user.id)
+    return if user.id==session[:user_id]
+    if Follow.followed?(session[:user_id],user.id)
+      #print '已关注 '
+      link_to( '取消', :action=>'unfo',:controller=>'follow')
+    else
+      link_to '关注', :action=>'fo', :controller=>'follow'
     end
   end
   

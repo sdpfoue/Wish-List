@@ -1,7 +1,19 @@
 =content_for :rside do
-  =link_to '关注他', :controller=>'follow',:action=>'fo',:id=>@user.id
+  =follow_button(@user)
+  %br
+  =@user.follower_counter
+  人在关注他
+  %br
+  -@followers.each do |f|
+    =avatar_url(f)
+  %br
+  关注
+  =@user.following_counter
+  人
+  %br
+  -@following.each do |f|
+    =avatar_url(f)
 
 =render 'share/header'
 
--@followers.each do |f|
-  =f.user.name
+

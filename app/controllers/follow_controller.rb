@@ -8,7 +8,7 @@ class FollowController < ApplicationController
       redirect_to :back and return if :back
       redirect_to index_url and return
     end
-    f=Follow.new(following_id:session[:user_id],user_id:@user.id)
+    f=Follow.new(following_id:@user.id,user_id:session[:user_id])
     if f.save
       flash[:success]='关注成功'
     else
@@ -18,6 +18,7 @@ class FollowController < ApplicationController
   end
   
   def unfo
-  
+    Follow.unfo(session[:user_id],params[:id])
+    redirect_back
   end
 end

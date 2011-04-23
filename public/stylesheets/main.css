@@ -89,6 +89,7 @@ margin: 2px 20px 0 0;
   float: left;
   width: 590px;
   padding-right: 40px;
+  min-height: 420px;
 }
 
 .side {

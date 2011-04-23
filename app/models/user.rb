@@ -12,6 +12,8 @@ class User
   field :banned, :type => Boolean
   field :remember, :type=>Boolean
   field :reg_ip
+  field :following_counter
+  field :follower_counter
   
   attr_accessor :password_confirmation
   attr_reader :psd,:remember_me
@@ -40,11 +42,12 @@ class User
   end
   
   def get_followers
-    Follow.all_in(following_id:[id])
+    Follow.all_followers(self)
   end
   
   def get_following
-    Follow.all_in(user_id:[id])
+    #Follow.all_in(user_id:[id])
+    Follow.all_following(self)
   end
 
   def remember_me_for(time)

@@ -5,7 +5,7 @@ MongoSrc::Application.routes.draw do
   get 'follow/fo/:id', :action=>'fo',:controller=>'follow'
   get 'follow/unfo/:id', :action=>'unfo',:controller=>'follow'
 
-  get "index/index"
+  get "/public-timeline", :action=>'publictimeline',:controller=>'index',:as=>'publictimeline'
   
   delete '/timeline/:id',:controller=>'timeline', :action=>'del'
 

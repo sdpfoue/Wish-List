@@ -1,3 +1,5 @@
+#encoding:utf-8
+
 class Timeline::Space < Timeline::Base
   field :space_name
   field :user_name

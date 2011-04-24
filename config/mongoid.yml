@@ -8,7 +8,7 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: mongo_src_development
+  database: dev
 
 test:
   <<: *defaults

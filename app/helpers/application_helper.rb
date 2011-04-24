@@ -20,14 +20,21 @@ module ApplicationHelper
         link_to(t.space_owner,user_url(t.space_owner_id))+
         ' 的空间 '+
         link_to(t.space_name,space_url(t.space_id))
+    when Timeline::Wishcomment
+      link_to(t.user_name, user_url(t.user_id))+' 添加了评论到 '+ 
+        link_to(t.wish_owner,user_url(t.wish_owner_id))+
+        ' 的愿望 '+
+        link_to(t.wish_name,wish_url(t.wish_id))
+    when Timeline::Follow
+      link_to(t.follower_name, user_url(t.user_id))+' 关注 '+
+        link_to(t.following_name, user_url(t.following_id))
     end    
   end
   
   def follow_button(user)
     return if user.id==session[:user_id]
     if Follow.followed?(session[:user_id],user.id)
-      #print '已关注 '
-      link_to( '取消', :action=>'unfo',:controller=>'follow')
+      raw("已关注 #{link_to( '取消', :action=>'unfo',:controller=>'follow')}")
     else
       link_to '关注', :action=>'fo', :controller=>'follow'
     end

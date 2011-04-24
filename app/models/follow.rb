@@ -6,11 +6,20 @@ class Follow
   
   referenced_in :user #fan
   referenced_in :following, :class_name=>'User' #following
+  references_many :timeline,:class_name=>'Timeline::Follow',:dependent=>:delete
   
   validate :can_only_follow_once
   
-  after_create :inc_counter
+  after_create :inc_counter, :update_timeline
   after_destroy :dec_counter
+  
+  def update_timeline
+    #@t=timeline.new(:user_id=>user.id,:follower_name=>user.name, 
+    #              :following_name=>following.name,:following_id=>following.id)
+    @t=timeline.new(:user_id=>user.id,:follower_name=>user.name, 
+                    :following_id=>following.id, :following_name=>following.name)    
+    @t.save
+  end
   
   def self.all_followers(user)
     fs=all_in(following_id:[user.id])

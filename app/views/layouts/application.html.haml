@@ -18,6 +18,7 @@
               %li=link_to "我的首页", user_url(session[:user_id])
               %li=link_to "我的愿望空间", :controller=>'spaces',:action=>'index',:user_id=>session[:user_id]
             %li=link_to "大家在做什么？", publictimeline_url
+            %li=link_to '杂谈', index_url
         #nav-user-info
           - if @logged
             =link_to @user_name,index_url
@@ -29,13 +30,13 @@
       #content
         .main
           - if flash[:success]
-            .success.flash
-              = flash[:success]
+            .notification#success
               %span.close x
+              %div= flash[:success]              
           - if flash[:error]
-            .error.flash
-              = flash[:error]
+            .notification#error
               %span.close x
+              %div= flash[:error]              
           - if flash[:notice]
             .notice.flash
               = flash[:notice]

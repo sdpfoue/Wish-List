@@ -130,3 +130,41 @@ margin: 5px 0 5px 0;
 padding: 5px 24px;
 color: #999;
 }
+
+.notification .close {
+color: #900;
+font-size: 9px;
+position: absolute;
+right: 5px;
+top: 5px;
+}
+.notification {
+-moz-background-clip: border;
+-moz-background-inline-policy: continuous;
+-moz-background-origin: padding;
+background-position: 10px 11px!important;
+background-repeat: no-repeat!important;
+border: 1px solid;
+font-size: 13px;
+margin: 0 0 15px;
+padding: 0;
+position: relative;
+width: 99.8%;
+}
+.notification div {
+display: block;
+font-style: normal;
+line-height: 1.5em;
+padding: 10px 10px 10px 36px;
+}
+#error {
+background: #DBE3FF url(/images/icons/information.png) repeat scroll 0 0;
+border-color: #A2B4EE;
+color: #585B66;
+}
+
+#success {
+background: #D5E9F6 url(/images/icons/check.png) repeat scroll 0 0;
+border-color: #0C7823;
+color: #585B66;
+}

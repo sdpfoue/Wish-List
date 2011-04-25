@@ -89,7 +89,6 @@ margin: 2px 20px 0 0;
   float: left;
   width: 590px;
   padding-right: 40px;
-  min-height: 420px;
 }
 
 .side {
@@ -168,3 +167,10 @@ background: #D5E9F6 url(/images/icons/check.png) repeat scroll 0 0;
 border-color: #0C7823;
 color: #585B66;
 }
+
+.rside{
+float: right;
+width: 310px;
+}
+
+#follow_button{width:70px}

@@ -1,0 +1,5 @@
+page.replace_html('follow_button',link_to('关注', {:action=>'fo', :controller=>'follow'},:remote=>true))
+
+page[:follow_button].visual_effect :highlight,
+  :startcolor => "#88ff88",
+  :endcolor => "#114411"

@@ -1,5 +1,5 @@
 class Comment::Wish<Comment::Base
-  referenced_in :wish
+  embedded_in :wish
   references_many :timeline, :class_name=>'Timeline::Wishcomment', :dependent=>:delete
   
   after_create :counter_inc, :update_timeline

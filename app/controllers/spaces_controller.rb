@@ -78,6 +78,7 @@ class SpacesController < ApplicationController
       @space=Space.find(flash[:id])
       @comment=@space.comments.new(:content=>params[:comment])
       @comment.user_id=session[:user_id]
+      @comment.user_name=session[:user_name]
       @comment.save
       redirect_to space_url(@space)
     end

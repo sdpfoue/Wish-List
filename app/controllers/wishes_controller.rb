@@ -62,6 +62,7 @@ class WishesController < ApplicationController
       @wish=Wish.find(flash[:id])
       @comment=@wish.comments.new(:content=>params[:comment])
       @comment.user_id=session[:user_id]
+      @comment.user_name=session[:user_name]
       @comment.save
       redirect_to wish_url(@wish)
     end

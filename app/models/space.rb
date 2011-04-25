@@ -8,7 +8,7 @@ class Space
   field :access, :type => String
   
   references_many :wishes, :dependent => :delete
-  references_many :comments,:dependent=>:delete,:class_name=>'Comment::Space'
+  embeds_many :comments,:dependent=>:delete,:class_name=>'Comment::Space'
   references_many :timeline, :class_name=>'Timeline::Space', :dependent=>:delete #delete
   references_many :timeline_comment, :class_name=>'Timeline::Spacecomment', :dependent=>:delete
   referenced_in :user

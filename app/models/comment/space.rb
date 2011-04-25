@@ -1,5 +1,5 @@
 class Comment::Space<Comment::Base
-  referenced_in :space
+  embedded_in :space
   references_many :timeline, :class_name=>'Timeline::Spacecomment', :dependent=>:delete
   
   after_create :counter_inc, :update_timeline

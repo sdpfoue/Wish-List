@@ -7,7 +7,7 @@ class Wish
   
   field :comments_counter, :type=>Integer, :default=>0
   
-  references_many :comments, :class_name=>'Comment::Wish',:dependent=>:delete
+  embeds_many :comments, :class_name=>'Comment::Wish',:dependent=>:delete
   references_many :timeline, :class_name=>'Timeline::Wish', :dependent=>:delete #delete
   references_many :timeline_comment,:class_name=>'Timeline::Wishcomment',:dependent=>:delete
   referenced_in :user

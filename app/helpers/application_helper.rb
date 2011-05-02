@@ -31,12 +31,13 @@ module ApplicationHelper
     end    
   end
   
-  def follow_button(user)
-    return if user==session[:user_id]
-    if Follow.followed?(session[:user_id],user.id)
-      raw("已关注 #{link_to( '取消', {:action=>'unfo',:controller=>'follow'},:remote=>true)}")
+  def follow_button(user_id)
+    return if user_id==session[:user_id]
+    if Follow.followed?(session[:user_id],user_id)
+      raw("<div id=\"follow_button\">已关注 #{link_to( '取消', {:action=>'unfo',:controller=>'follow'},:remote=>true)}
+            </div>")
     else
-      link_to '关注', {:action=>'fo', :controller=>'follow'},:remote=>true
+      raw("<div id=\"follow_button\">#{link_to '关注', {:action=>'fo', :controller=>'follow'},:remote=>true}</div>")
     end
   end
   

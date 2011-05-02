@@ -4,7 +4,7 @@
     -@comments.each do |comment|
       %p
         =comment.created_at
-        =comment.user_name
+        =link_to comment.user_name,user_url(comment.user_id)
         -if comment.user_id==session[:user_id]||@isowner
           =link_to '删除',{:action=>'comment',:cid=>comment.id},{:confirm=>'确认删除？',:method=>:delete}
       %p=comment.content

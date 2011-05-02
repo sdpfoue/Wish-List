@@ -25,6 +25,7 @@ class UserController < ApplicationController
 
   def show
 	  @user=User.find(params[:id])
+	  @user_id=@user.id
 	  @followers=@user.get_followers
 	  @following=@user.get_following
 	  @h1=@user.name

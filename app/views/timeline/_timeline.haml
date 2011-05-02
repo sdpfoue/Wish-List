@@ -1,0 +1,11 @@
+%ul.tml
+  -@timeline.each do |t|
+    %div{:id=>t.id}
+      %li.tmll
+        =avatar_url(t.user)
+      %li.tmlr
+        =print_timeline(t)
+        =t.created_at
+        -if t.user_id==session[:user_id]
+          %span=link_to 'x',{:controller=>'timeline', :action=>'del', :id=>t.id}, {:method=>'delete', :confirm=>'确定从时间线中删除吗？',:remote=>true}
+        %div.broadsmr=t.content

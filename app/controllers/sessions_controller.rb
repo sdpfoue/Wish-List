@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
     if user = User.authenticate(params[:email], params[:password])
       session[:user_id] = user.id
       session[:user_name]=user.name
-      flash[:notice]="欢迎回来"
+      flash[:success]="欢迎回来"
       if flash[:url] 
         redirect_to flash[:url] 
       else 

@@ -6,6 +6,8 @@ class Space
   field :name, :type => String
   field :des, :type => String
   field :access, :type => String
+  field :privacy
+  field :allowed_users, :type=>Array
   
   references_many :wishes, :dependent => :delete
   embeds_many :comments,:dependent=>:delete,:class_name=>'Comment::Space'
@@ -20,12 +22,23 @@ class Space
   after_create  :update_timeline
   #after_destroy :decrement_counter_cache
   
+  def get_privacy
+    self.privacy
+  end
+  
 protected
 
   def update_timeline
     @t=timeline.new(:user_id=>user.id,:space_id=>self.id,
                  :user_name=>user.name, :space_name=>self.name)
     @t.save
+  end
+  
+  def parse_user(string)
+    users = string.split
+    users.uniq
+    users.map! {|user| user.gsub "/", ""}
+    users.delete_if {|user| !User.user_exists_by_name?(user)}    
   end
   
 end

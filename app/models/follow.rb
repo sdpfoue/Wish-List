@@ -34,7 +34,7 @@ class Follow
     fs.map{|f| f.following}
   end
   
-  def self.followed?(fan,following)
+  def self.following?(fan,following)
     !!Follow.where(user_id: fan).and(following_id: following).first
   end
   

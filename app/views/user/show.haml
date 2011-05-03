@@ -1,7 +1,7 @@
 =content_for :rside do
   =follow_button(@user_id)
   %br
-  =@user.follower_counter
+  %span#follower_counter=@user.follower_counter
   人在关注他
   %br
   -@followers.each do |f|

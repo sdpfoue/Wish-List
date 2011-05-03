@@ -33,7 +33,7 @@ module ApplicationHelper
   
   def follow_button(user_id)
     return if user_id==session[:user_id]
-    if Follow.followed?(session[:user_id],user_id)
+    if Follow.following?(session[:user_id],user_id)
       raw("<div id=\"follow_button\">已关注 #{link_to( '取消', {:action=>'unfo',:controller=>'follow'},:remote=>true)}
             </div>")
     else

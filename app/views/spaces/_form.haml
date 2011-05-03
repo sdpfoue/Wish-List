@@ -14,6 +14,19 @@
     =f.label :des
     %br/
     =f.text_area :des
+    %br
+    =f.label :privacy
+    %br
+    = f.radio_button(:privacy, "public",:checked=>true) 
+    = f.label(:privacy_public, "公开") 
+    = f.radio_button(:privacy, "following") 
+    = f.label(:privacy_following, "关注我的人") 
+    = f.radio_button(:privacy, "selected") 
+    = f.label(:privacy_selected, "选择用户") 
+    = f.radio_button(:privacy, "onlyme") 
+    = f.label(:privacy_onlyme, "只有我") 
+    = f.text_field :allowed_users
+
     .action
       =f.submit
     

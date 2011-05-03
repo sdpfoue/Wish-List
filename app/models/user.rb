@@ -74,8 +74,13 @@ class User
     User.secure_digest(Time.now, (1..10).map{ rand.to_s }, self.name, self.email)
   end  
 
+
   def self.secure_digest(*args)
     Digest::SHA2.hexdigest(args.flatten.join)
+  end
+  
+  def User.user_exists_by_name?(user_name)
+	!!User.where(name: user_name).first
   end
   
   def psd=(psd)

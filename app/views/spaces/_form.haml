@@ -1,3 +1,9 @@
+-if @privacy!='selected'
+  :javascript
+      $(document).ready(function(){
+        $('#allowed_users').hide();
+      });
+
 =form_for(@space) do |f|
   -if @space.errors.any?
     #error_explanation
@@ -15,8 +21,8 @@
     %br/
     =f.text_area :des
     %br
+    
     =f.label :privacy
-    %br
     = f.radio_button(:privacy, "public",:checked=>true) 
     = f.label(:privacy_public, "公开") 
     = f.radio_button(:privacy, "following") 
@@ -25,8 +31,18 @@
     = f.label(:privacy_selected, "选择用户") 
     = f.radio_button(:privacy, "onlyme") 
     = f.label(:privacy_onlyme, "只有我") 
-    = f.text_field :allowed_users
+    #allowed_users
+      =f.label :allowed_users
+      = f.text_field :allowed_users, :value=>@space.allowed_users_string
 
     .action
       =f.submit
+    :javascript
+      $("input[type=radio]").change(function () {
+        //alert($(this).val());  
+        if($(this).val()=='selected')
+          $('#allowed_users').slideDown();
+        else
+          $('#allowed_users').slideUp();
+      });
     

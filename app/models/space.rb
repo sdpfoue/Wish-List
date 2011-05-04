@@ -9,6 +9,8 @@ class Space
   field :privacy
   field :allowed_users, :type=>Array
   
+  #attr_accessible :allowed_users, :name, :des, :privacy
+  
   references_many :wishes, :dependent => :delete
   embeds_many :comments,:dependent=>:delete,:class_name=>'Comment::Space'
   references_many :timeline, :class_name=>'Timeline::Space', :dependent=>:delete #delete
@@ -26,6 +28,18 @@ class Space
     self.privacy
   end
   
+  def allowed_users=(string)
+    if string.is_a? String
+      write_attribute :allowed_users, parse_users_from_string(string)
+    else
+      write_attribute :allowed_users, string.uniq
+    end
+  end
+  
+  def allowed_users_string
+    return allowed_users.join(' ') unless allowed_users.blank?
+  end
+  
 protected
 
   def update_timeline
@@ -34,7 +48,7 @@ protected
     @t.save
   end
   
-  def parse_user(string)
+  def parse_users_from_string(string)
     users = string.split
     users.uniq
     users.map! {|user| user.gsub "/", ""}

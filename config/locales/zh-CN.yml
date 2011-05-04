@@ -48,6 +48,8 @@ zh-CN:
       space:
         name: 空间名称
         des: 空间介绍
+        privacy: 权限
+        allowed_users: 授权用户
       wish:
         name: 愿望
         des: 愿望描述

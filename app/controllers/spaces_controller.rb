@@ -35,6 +35,7 @@ class SpacesController < ApplicationController
   
   def edit
     @space = Space.find(params[:id])
+    @privacy=@space.privacy
     unless owner?(@space) #hack#
       redirect_to user_spaces_url(@space.user.id)
     end
@@ -110,7 +111,7 @@ class SpacesController < ApplicationController
     when 'following'
       Follow.following?(session[:user_id],@user.id)
     when 'selected'
-    
+      return true if @space.allowed_users.include?(session[:user_name])
     when 'public'
       true    
     end

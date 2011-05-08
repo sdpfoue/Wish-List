@@ -26,7 +26,7 @@ class SpacesController < ApplicationController
     @comments=@space.comments.all
     @comments_counter=@space.comments_counter
     @privacy=@space.privacy
-    @is_allowed=isallowed?
+    @is_allowed=@space.isallowed?(session[:user_id],session[:user_name])
   end
   
   def new
@@ -77,8 +77,8 @@ class SpacesController < ApplicationController
   
   def comment
     if request.post?
-      flash[:error]='失败，请重试' and redirect_to :back and return unless (flash[:id]||isallowed?)
       @space=Space.find(flash[:id])
+      flash[:error]='失败，请重试' and redirect_to :back and return unless (flash[:id]||@space.isallowed?(session[:user_id],session[:user_name]))      
       @comment=@space.comments.new(:content=>params[:comment])
       @comment.user_id=session[:user_id]
       @comment.user_name=session[:user_name]
@@ -103,18 +103,5 @@ class SpacesController < ApplicationController
     space.user.id==session[:user_id]
   end
   
-  def isallowed?
-    return true if @isowner
-    case @privacy
-    when 'onlyme'
-      @isowner
-    when 'following'
-      Follow.following?(session[:user_id],@user.id)
-    when 'selected'
-      return true if @space.allowed_users.include?(session[:user_name])
-    when 'public'
-      true    
-    end
-  end
 
 end

@@ -43,11 +43,14 @@ class WishesController < ApplicationController
   
   def show
     @wish=Wish.find(params[:id])
+    @user=@wish.user
     flash[:id]=@wish.id
     @isowner=true if @wish.user_id==session[:user_id]
     @h1=@wish.name+' - '+@wish.user.name+'的心愿单'
     @comments=@wish.comments.all
     @comments_counter=@wish.comments_counter
+    @privacy=@wish.space.get_privacy
+    @isallowed=@wish.space.isallowed?(session[:user_id],session[:user_name])
   end
   
   def destroy
@@ -60,6 +63,8 @@ class WishesController < ApplicationController
   def comment
     if request.post?
       @wish=Wish.find(flash[:id])
+      @space=@wish.space
+      flash[:error]='失败，请重试' and redirect_to :back and return unless (flash[:id]||@space.isallowed?(session[:user_id],session[:user_name]))
       @comment=@wish.comments.new(:content=>params[:comment])
       @comment.user_id=session[:user_id]
       @comment.user_name=session[:user_name]

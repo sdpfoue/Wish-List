@@ -1,24 +1,27 @@
 %h1=@h1
-%p
-  %b 心愿：
-  =@wish.name
-  %br
-  =@wish.created_at
-  添加
+-if @isallowed
+  %p
+    %b 心愿：
+    =@wish.name
+    %br
+    =@wish.created_at
+    添加
 
-%p  
-  %b 描述：
-  =@wish.des
-  
--if @isowner
-  =link_to '修改此心愿', edit_wish_url(@wish)
-  |
-  =link_to '删除此心愿', @wish,:method=>'delete',:confirm=>'确认删除？'
-返回空间：
-= link_to @wish.space.name, space_url(@wish.space)
--if flash[:new]&&@isowner
-  =' | '
-  =link_to '继续添加',:action=>'new',:controller=>'wishes',:s=>@wish.space.id
-%hr
+  %p  
+    %b 描述：
+    =@wish.des
+    
+  -if @isowner
+    =link_to '修改此心愿', edit_wish_url(@wish)
+    |
+    =link_to '删除此心愿', @wish,:method=>'delete',:confirm=>'确认删除？'
+  返回空间：
+  = link_to @wish.space.name, space_url(@wish.space)
+  -if flash[:new]&&@isowner
+    =' | '
+    =link_to '继续添加',:action=>'new',:controller=>'wishes',:s=>@wish.space.id
+  %hr
 
-=render 'share/comments'
+  =render 'share/comments'
+-else
+  =render 'spaces/no_privacy'

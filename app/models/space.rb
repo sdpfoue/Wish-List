@@ -40,6 +40,24 @@ class Space
     return allowed_users.join(' ') unless allowed_users.blank?
   end
   
+  def isallowed?(uid,user_name)
+    return true if uid==user_id
+    case privacy
+    when 'onlyme'
+      uid==user.id
+    when 'following'
+      Follow.following?(uid,user.id)
+    when 'selected'
+      return true if allowed_users.include?(user_name)
+    when 'public'
+      true    
+    end
+  end
+  
+  def get_privacy
+    privacy  
+  end
+  
 protected
 
   def update_timeline

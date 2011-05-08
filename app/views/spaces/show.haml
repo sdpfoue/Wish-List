@@ -40,13 +40,4 @@
       %hr      
   =render 'share/comments'
 -else
-  %br
-  - case @privacy
-  - when 'following'
-    %p
-      该空间仅对关注者开放，立刻
-      =link_to '关注', {:action=>'fo', :controller=>'follow',:id=>@user.id}
-  - when 'onlyme'
-    %p 这是一个私人空间，您无权访问
-  - when 'selected'
-    %p 该空间仅对选定的人开放
+  =render 'no_privacy'

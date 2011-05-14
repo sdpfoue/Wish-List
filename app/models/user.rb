@@ -110,4 +110,8 @@ class User
     end
   end
   
+  def get_auth(provider)
+    authorizations.where(:provider=>provider).first
+  end
+  
 end

@@ -26,5 +26,7 @@ class Authorization
     user
   end
   
+
+  
   
 end

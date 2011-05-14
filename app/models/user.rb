@@ -15,11 +15,15 @@ class User
   field :following_counter, :default=>0
   field :follower_counter, :default=>0
   
+  attr_accessible :name, :email,:psd
+  
   attr_accessor :password_confirmation
   attr_reader :psd,:remember_me
   
   references_many :spaces
   references_many :wishes
+  
+  embeds_many :authorizations
   
   validates_presence_of :name, :email
   #validates_presence_of :password, :if => Proc.new {|user| user.requrie_password?}

@@ -48,6 +48,19 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user ? user.id : nil
   end
   
+  def render_404
+    render_optional_error_file(404)
+  end
+  
+  def render_optional_error_file(status_code)
+    status = status_code.to_s
+    if ["404", "422", "500"].include?(status)
+      render :template => "/errors/#{status}.html.erb", :status => status, :layout => "application"
+    else
+      render :template => "/errors/unknown.html.erb", :status => status, :layout => "application"
+    end
+  end  
+  
   protected
     def ifLoggedin
       unless session[:user_id]
@@ -61,8 +74,11 @@ class ApplicationController < ActionController::Base
    end
    
   def redirect_back
-    redirect_to :back and return if :back
-    redirect_to index_url 
+    if request.env["HTTP_REFERER"]
+      redirect_to :back
+    else
+      redirect_to index_url 
+    end
   end
   
 end

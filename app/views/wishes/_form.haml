@@ -1,8 +1,8 @@
 =form_for(@wish) do |f|
-  -if @space.errors.any?
+  -if @wish.errors.any?
     #error_explanation
       %ul
-        -@space.errors.full_messages.each do |msg|
+        -@wish.errors.full_messages.each do |msg|
           %li=msg
   
   .field

@@ -30,5 +30,12 @@ class UserController < ApplicationController
 	  @following=@user.get_following
 	  @h1=@user.name
   end
+  
+  def auth_callback
+    auth = request.env["omniauth.auth"]
+    Authorization.create_from_hash(auth,User.find(session[:user_id]))
+    redirect_back
+    
+  end
 
 end

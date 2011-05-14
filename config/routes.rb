@@ -10,7 +10,7 @@ MongoSrc::Application.routes.draw do
   delete '/timeline/:id',:controller=>'timeline', :action=>'del'
 
   get '/reg', :controller=>'user',:action=>'reg'
-  
+  match "auth/:provider/callback", :to => "user#auth_callback"  
 
   resources :wishes,:except=>:new do
     collection do

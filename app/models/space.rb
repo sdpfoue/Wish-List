@@ -9,7 +9,9 @@ class Space
   field :privacy
   field :allowed_users, :type=>Array
   
-  #attr_accessible :allowed_users, :name, :des, :privacy
+  attr_accessible :allowed_users, :name, :des, :privacy
+  
+  validates_presence_of :name, :des, :privacy
   
   references_many :wishes, :dependent => :delete
   embeds_many :comments,:dependent=>:delete,:class_name=>'Comment::Space'

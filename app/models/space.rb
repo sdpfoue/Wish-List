@@ -42,6 +42,10 @@ class Space
     return allowed_users.join(' ') unless allowed_users.blank?
   end
   
+  def get_allowed_users
+    User.get_users_by_name(allowed_users)
+  end
+  
   def isallowed?(uid,user_name)
     return true if uid==user_id
     case privacy

@@ -6,6 +6,10 @@
 -when 'following'
   关注的人
 -when 'selected'
-  对
-  =space.allowed_users_string
-  开放
+  -if space.allowed_users.count>0
+    对
+    -space.get_allowed_users.each do |user|
+      =link_to user.name, user_url(user)
+    开放
+  -else
+    不对任何人开放

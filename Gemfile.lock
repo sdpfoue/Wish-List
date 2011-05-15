@@ -154,3 +154,4 @@ DEPENDENCIES
   omniauth (= 0.2.0)
   omniauth_china (= 0.0.6)
   rails (= 3.0.6)
+  will_paginate (>= 3.0.pre)

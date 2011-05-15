@@ -12,6 +12,8 @@
     = @space.des
     %br/
     -if @isowner
+      =link_to '修改空间', edit_space_url(@space)
+      |
       =link_to '添加愿望', {:controller=>'wishes',:action=>'new',:s=>@space.id}
       |
       =link_to '返回我的空间',user_spaces_url(session[:user_id])
@@ -21,6 +23,9 @@
       名称：
       =link_to wish.name,wish_url(wish)
       %br/
+      标签：
+      =wish.tags_string
+      %br
       =wish.created_at
       添加
       %br

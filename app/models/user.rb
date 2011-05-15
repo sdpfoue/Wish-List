@@ -114,4 +114,8 @@ class User
     authorizations.where(:provider=>provider).first
   end
   
+  def self.get_users_by_name(userlist)
+    any_in(name: userlist)   
+  end
+  
 end

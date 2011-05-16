@@ -1,6 +1,7 @@
 class Wish
   include Mongoid::Document
   include Mongoid::Timestamps
+  include StringExtensions
   
   field :name, :type => String
   field :des, :type => String
@@ -50,12 +51,6 @@ protected
     space.inc :wishes_counter, -1
   end
   
-  def parse_tags_from_string(string)
-    return [] if string==""
-    tags = string.downcase.split
-    tags.map! {|tag| tag.gsub "/", ""}
-    tags.delete_if {|tag| tag.size > 20 or tag.empty? or tag == '.'}
-    tags.uniq
-  end  
+
   
 end

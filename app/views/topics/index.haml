@@ -1,0 +1,15 @@
+%h1 茶馆
+
+=link_to '发起话题', new_topic_url
+
+#topics
+  -@topics.each do |topic|
+    .topic
+      .avatar=avatar_url topic.user
+      .summary
+        .title
+          =link_to topic.title, topic_url(topic)
+          -if topic.user_id==session[:user_id]
+            %span.del_button X
+        .topics=topic.tags_string
+      

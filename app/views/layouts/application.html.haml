@@ -18,7 +18,7 @@
               %li=link_to "我的首页", user_url(session[:user_id])
               %li=link_to "我的愿望空间", :controller=>'spaces',:action=>'index',:user_id=>session[:user_id]
             %li=link_to "大家在做什么？", publictimeline_url
-            %li=link_to '杂谈', index_url
+            %li=link_to '茶馆', topics_url
         #nav-user-info
           - if @logged
             =link_to @user_name,index_url

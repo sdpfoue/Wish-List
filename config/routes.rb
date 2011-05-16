@@ -33,7 +33,8 @@ MongoSrc::Application.routes.draw do
     end  
   end
   
-  
+  resources :topics
+  resources :replies
 
   
   

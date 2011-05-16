@@ -47,6 +47,19 @@ div {
   margin-top: 5px;
 }
 
+.avatar{
+margin: 5px 15px 15px 0;
+height: 48px;
+width: 48px;
+}
+
+.align-right{
+float:right;
+}
+.align-left{
+float:left;
+}
+
 #user-info .avatar {
 float: left;
 margin-right: 12px;
@@ -172,5 +185,32 @@ color: #585B66;
 float: right;
 width: 310px;
 }
+.clear-both{
+clear:both;
+}
 
 #follow_button{width:70px}
+
+.topic {
+border-bottom: 1px dashed #CCC;
+padding: 15px 10px;
+overflow: hidden;
+}
+
+#topics .avatar {
+width: 48px;
+height: 48px;
+float: left;
+margin-right: 10px;
+}
+#topic-content{
+margin-top:15px;
+}
+
+#replies {
+border-top: 1px dashed #CCC;
+margin-top: 20px;
+}
+#reply-form{
+margin-top:15px;
+}

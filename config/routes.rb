@@ -33,8 +33,11 @@ MongoSrc::Application.routes.draw do
     end  
   end
   
-  resources :topics do
-    resources :replies
+  resources :topics, :except => [:destroy] do
+    resources :replies, :except => [:destroy]
+    collection do
+      get 'tag/:tag', :action => 'tag', :as => :tag, :constraints  => { :tag => /[^\/]+/ }, :format => false
+    end
   end
   
   resources :replies

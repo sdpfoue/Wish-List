@@ -1,4 +1,7 @@
-%h1 茶馆
+-if @h1
+  %h1=@h1+' - 茶馆'
+-else
+  %h1='茶馆'
 
 =link_to '发起话题', new_topic_url
 
@@ -22,8 +25,11 @@
           =link_to topic.last_replied_by.name, topic.last_replied_by
           在
           =topic.last_replied_at
-          最后回复
-        .tags=topic.tags_string
+          最后回复        
+        .tags 
+          标签：
+          -topic.tags.each do |tag|
+            =link_to tag, tag_topics_url(:tag=>tag)
         
         
 

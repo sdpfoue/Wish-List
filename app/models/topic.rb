@@ -16,6 +16,7 @@ class Topic
   validates_presence_of :title, :content
   validates_length_of :title, :maximum => 100
   validates_length_of :tags, :maximum => 5
+  validates_length_of :tags, :minimum =>1
   
   embeds_many :replies, :validate => false, :dependent => :delete
   belongs_to :user

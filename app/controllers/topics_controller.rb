@@ -1,7 +1,7 @@
 #encoding:utf-8
 
 class TopicsController < ApplicationController
-
+  respond_to :html,:rss, :only => [:index, :tagged]
   def index
     @topics=Topic.all.desc(:last_replied_at)
   end
@@ -42,6 +42,28 @@ class TopicsController < ApplicationController
     else
       render :new
     end    
+  end
+  
+  def tag
+    @tag = params[:tag]
+    @h1=@tag
+    set_page_title(@tag)
+    if params[:format] == 'rss'
+        @topics = Topic.where(:tags => @tag).desc(:created_at).paginate :per_page => 20, :page => params[:page]
+    else
+        @topics = Topic.where(:tags => @tag).desc(:last_replied_at).paginate :per_page => 20, :page => params[:page]
+    end
+    
+    respond_with(@topics) do |format|
+      format.html { render :index }
+      format.rss  do
+        @channel_link = tagged_topics_url(:tag => @tag)
+        render :topics, :layout => false
+      end
+      format.js { render :index, :layout => false }
+    end    
+    
+    
   end
   
   def destory

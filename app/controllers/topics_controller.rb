@@ -3,13 +3,14 @@
 class TopicsController < ApplicationController
 
   def index
-    @topics=Topic.all
+    @topics=Topic.all.desc(:last_replied_at)
   end
   
   def show
     @topic=Topic.find(params[:id])
     @author=@topic.user
     @reply=Reply.new
+    @replies=@topic.replies.all
   end 
   
   def new
@@ -27,8 +28,20 @@ class TopicsController < ApplicationController
     end
   end
   
-  def update
+  def edit
+    @topic=Topic.find(params[:id])
+    render_404 and return unless @topic.user_id==session[:user_id]
+  end
   
+  def update
+    @topic=Topic.find(params[:id])
+    render_404 and return unless @topic.user_id==session[:user_id]
+    if @topic.update_attributes(params[:topic])
+      flash[:success]='修改成功'
+      redirect_to topic_url(@topic)
+    else
+      render :new
+    end    
   end
   
   def destory

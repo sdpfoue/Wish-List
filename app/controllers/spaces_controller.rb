@@ -44,7 +44,8 @@ class SpacesController < ApplicationController
   def update
     @space = Space.find(params[:id])
     if !owner?(@space) #try to edit others wishlist #hack#
-      redirect_to user_spaces_url(@space.user.id) 
+      render_404
+      return
     elsif @space.update_attributes(params[:space])
       flash[:success]='修改成功'
       redirect_to user_spaces_url(@space.user.id)
@@ -67,7 +68,7 @@ class SpacesController < ApplicationController
   def destroy
     @space = Space.find(params[:id])
     if !owner?(@space) #hack#
-      redirect_to user_spaces_url(@space.user.id)
+      render_404
     else
       @space.destroy
       flash[:success]='成功删除'
@@ -90,8 +91,8 @@ class SpacesController < ApplicationController
       redirect_to :back,:error=>'sdf' and return unless flash[:id]
       @space=Space.find(flash[:id])
       @comment=@space.comments.find(params[:cid])
-      redirect_to space_url(@space) and return unless @space.user_id==session[:user_id] || 
-                                                   @comment.user_id==session[:user_id]
+      render_404 and return unless @space.user_id==session[:user_id] || 
+                                   @comment.user_id==session[:user_id]
       @comment.destroy
       redirect_to space_url(@space)
     end

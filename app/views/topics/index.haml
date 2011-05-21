@@ -7,9 +7,24 @@
     .topic
       .avatar=avatar_url topic.user
       .summary
+        .reply_counter
+          =topic.replies_count
+          回复  
         .title
           =link_to topic.title, topic_url(topic)
           -if topic.user_id==session[:user_id]
             %span.del_button X
-        .topics=topic.tags_string
+        =link_to topic.user.name, user_url(topic.user)
+        创建于
+        =topic.created_at
+        %br
+        -if topic.last_replied_by
+          =link_to topic.last_replied_by.name, topic.last_replied_by
+          在
+          =topic.last_replied_at
+          最后回复
+        .tags=topic.tags_string
+        
+        
+
       

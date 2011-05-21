@@ -5,7 +5,7 @@ class Reply
   field :content
   
   embedded_in :topic
-  belongs_to :user
+  referenced_in :user
   
   attr_accessible :content
   
@@ -16,10 +16,18 @@ class Reply
   
   def increment_counter
     topic.inc :replies_count, 1
+    topic.last_replied_by=user
+    topic.last_replied_at=created_at
+    topic.save
   end
   
   def decrement_counter
     topic.inc :replies_count, -1
+    if topic.last_replied_at==created_at
+      topic.last_replied_at=topic.last.created_at 
+      topic.last_replied_by=topic.last.user
+    end
+    topic.save
   end
   
   

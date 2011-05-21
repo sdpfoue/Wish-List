@@ -1,3 +1,6 @@
+-content_for :rside do
+  =link_to '回茶馆',topics_url
+
 %div
   .align-left.avatar
     =avatar_url @author
@@ -5,17 +8,32 @@
     #topic-header
       %h1=@topic.title
       来自
-      =@author.name
+      =link_to @author.name, user_url(@author)
       =@topic.created_at
+      -if @topic.user_id==session[:user_id]
+        =link_to '编辑', edit_topic_url(@topic)
+  .clear-both
     #topic-content
       =@topic.content
+    #tags
+      %b 标签:        
+      =@topic.tags_string
+
   #replies
+    -@replies.each do |reply|
+      .reply
+        .align-left.avatar
+          =avatar_url reply.user
+        .reply-content
+          =link_to reply.user.name, user_url(reply.user)
+          =reply.created_at
+          -if reply.user_id==session[:user_id]
+            =link_to '编辑', edit_topic_reply_url(@topic,reply)
+          %br
+          =reply.content
+        .clear-both
     #reply-form
       我要回复：
-      =form_for(@reply) do |f|
-        =f.text_area(:content, :size => "60x6") 
-        =hidden_field_tag :topic,@topic.id.to_s
-        %br
-        = submit_tag "放上去"
+      =render 'replies/form'
 
   

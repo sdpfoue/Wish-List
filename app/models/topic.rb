@@ -8,6 +8,8 @@ class Topic
   field :tags, :type => Array
   field :closed, :type => Boolean
   field :replies_count, :type => Integer, :default => 0
+  field :last_replied_at, :type => Time
+  belongs_to :last_replied_by, :class_name=>'User'
   
   attr_accessible :title, :content, :tags
   

@@ -177,8 +177,8 @@ color: #585B66;
 
 #success {
 background: #f0f0fc url(/images/icons/check.png) repeat scroll 0 0;
-border-color: #bbddee;
-color: #585B66;
+color: #33A333;
+border-color: #C7F2C8;
 }
 
 .rside{
@@ -186,6 +186,9 @@ float: right;
 width: 310px;
 }
 .clear-both{
+clear:both;
+}
+.clear{
 clear:both;
 }
 
@@ -204,13 +207,22 @@ float: left;
 margin-right: 10px;
 }
 #topic-content{
-margin-top:15px;
+margin:15px 0px 15px 0px;
 }
 
 #replies {
 border-top: 1px dashed #CCC;
-margin-top: 20px;
+margin-top: 2px;
 }
 #reply-form{
 margin-top:15px;
+}
+
+.reply{
+clear: both;
+border-bottom: 1px dashed #CCC;
+margin-top: 20px;
+}
+.reply_counter{
+float:right;
 }

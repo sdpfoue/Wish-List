@@ -1,10 +1,24 @@
--if @h1
-  %h1=@h1+' - 茶馆'
--else
-  %h1='茶馆'
 
+#sub-nav
+  %ul
+    %li{:class=>(@current == 'index' ? :current : nil)}
+      =link_to '茶馆',topics_url
+    %li
+      我发起的
+    %li
+      我回复过
+    %li{:class=>(@tag=='许愿墙'?:current : nil)}
+      =link_to '许愿墙', tag_topics_url(:tag=>'许愿墙')
+    %li
+      收藏
+    -if @tag&&@tag!='许愿墙'
+      %li{:class=>(@current == 'tag' ? :current : nil)}
+        =@tag
+.clear
+
+-if @topics.count==0
+  该标签下还没有话题，
 =link_to '发起话题', new_topic_url
-
 #topics
   -@topics.each do |topic|
     .topic
@@ -27,9 +41,25 @@
           =topic.last_replied_at
           最后回复        
         .tags 
-          标签：
           -topic.tags.each do |tag|
-            =link_to tag, tag_topics_url(:tag=>tag)
+            =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'
+            
+-content_for :rside do
+  -if @wishes.count==0
+    还没有标记为
+    %i=@tag
+    的愿望
+  -else
+    -if @tag
+      标记了
+      %i=@tag
+      的愿望
+    -else
+      最新愿望
+    %ul
+      -@wishes.each do |wish|
+        %li
+          =link_to wish.name,wish_url(wish)
         
         
 

@@ -81,4 +81,8 @@ class WishesController < ApplicationController
     end
   end
   
+  def tag
+    @wishes=Wish.where
+  end
+  
 end

@@ -26,6 +26,19 @@ class Wish
   def tags_string
     return tags.join(' ') unless tags.blank?
   end
+  
+  
+  def self.get_tagged_wishes(tag,uid,user_name)
+    #get retent 15 tagged wishes
+    limt=15
+    if tag!=""
+      Wish.where(:tags=>tag).desc(:created_at).limit(limt)
+    else
+      Wish.all.desc(:created_at).limit(limt)
+    end
+    #Delete the wishes which is not allowed
+    #whises.delete_unless {|wish| wish.space.isallowed?(uid,user_name)}
+  end
 
 protected
 
@@ -50,7 +63,5 @@ protected
   def counter_dec
     space.inc :wishes_counter, -1
   end
-  
-
   
 end

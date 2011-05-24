@@ -4,9 +4,10 @@
     %b 心愿：
     =@wish.name
     %br
-    %b 标签：
-    =@wish.tags_string
-    %br
+    -if @wish.tags.present?
+      -@wish.tags.each do |tag|
+        =link_to tag,tag_topics_url(:tag=>tag),:class=>'tag'
+      %br
     =@wish.created_at
     添加
 

@@ -16,9 +16,8 @@
     #topic-content
       =@topic.content
     #tags
-      %b 标签:        
       -@topic.tags.each do |tag|
-        =link_to tag, tag_topics_url(:tag=>tag)
+        =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'
 
   #replies
     -@replies.each do |reply|
@@ -33,6 +32,8 @@
           %br
           =reply.content
         .clear-both
+    -@topic.tags.each do |tag|
+      =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'
     #reply-form
       我要回复：
       =render 'replies/form'

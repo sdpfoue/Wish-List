@@ -3,7 +3,10 @@
 class TopicsController < ApplicationController
   respond_to :html,:rss, :only => [:index, :tagged]
   def index
+    @current='index'
     @topics=Topic.all.desc(:last_replied_at)
+    set_page_title('茶馆 ')
+    @wishes=Wish.get_tagged_wishes('',session[:user_id],session[:user_name])
   end
   
   def show
@@ -46,7 +49,9 @@ class TopicsController < ApplicationController
   
   def tag
     @tag = params[:tag]
+    @current='tag'
     @h1=@tag
+    @wishes=Wish.get_tagged_wishes(@tag,session[:user_id],session[:user_name])
     set_page_title(@tag)
     if params[:format] == 'rss'
         @topics = Topic.where(:tags => @tag).desc(:created_at).paginate :per_page => 20, :page => params[:page]

@@ -11,8 +11,9 @@ font-size: 14px;
 
 a:link {
   text-decoration: none;
- 
+color: #039; 
 }
+
 a:hover{text-decoration:underline;color:#039}
 a:active{text-decoration:underline;color:#039}
 a:visited{text-decoration:none;color:#039}
@@ -34,7 +35,9 @@ a img { border-width:0; }
 
 h1 { word-wrap: break-word; display: block; font-size: 25px; font-weight: bold; color: #494949; margin:0; padding: 0 0 15px 0;line-height:1.1; }
 
-#comments h3{background-color:#FFF0A8}
+#comments h3{background-color: #DFE9F5;
+border: 1px solid #CCC;
+}
 
 table { border-collapse:collapse; border: none; padding: 0; margin: 0; }
 
@@ -226,3 +229,48 @@ margin-top: 20px;
 .reply_counter{
 float:right;
 }
+.tag {
+background-color: #E0EAF1;
+border-bottom: 1px solid #3E6D8E;
+border-right: 1px solid #7F9FB6;
+color: #3E6D8E;
+font-size: 11px;
+margin: 2px 2px 2px 0;
+padding: 3px 7px;
+text-decoration: none;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+}
+
+.tag:hover{background-color:#3e6d8e;color:#e0eaf1;text-decoration:none}
+
+#sub-nav{float:right;}
+#sub-nav ul{list-style:none;padding:0;margin-top:30px;}
+#sub-nav ul li{float: left;
+font-size: 16px;
+border: 1px solid white;
+padding-left: 8px;
+padding-right: 8px;
+padding-top: 7px;
+padding-bottom: 7px;
+margin-right: 3px;
+}
+
+#sub-nav ul li a{text-decoration:none;}
+
+#sub-nav ul li:hover{background-color:#efefef;border:1px
+solid #aaa;color:#444;cursor:pointer;box-shadow:0px 0px 6px #000;border-radius:6px;-moz-border-radius:6px;-webkit-border-radius:6px}
+
+#sub-nav ul li.current {
+background-color: #FFEEA8;
+border: 1px solid #FC0;
+box-shadow: 0px 0px 6px black;
+border-radius: 6px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+}
+#sub-nav ul li.current a{
+color:#4b4742;
+}
+
+

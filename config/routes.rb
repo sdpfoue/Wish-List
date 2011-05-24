@@ -16,6 +16,7 @@ MongoSrc::Application.routes.draw do
     collection do
       post 'comment'
       delete 'comment'
+      get 'tag/:tag', :action => 'tag', :as => :tag, :constraints  => { :tag => /[^\/]+/ }, :format => false
     end
   end
   
@@ -37,6 +38,7 @@ MongoSrc::Application.routes.draw do
     resources :replies, :except => [:destroy]
     collection do
       get 'tag/:tag', :action => 'tag', :as => :tag, :constraints  => { :tag => /[^\/]+/ }, :format => false
+      get 'mine', :action=>'mine',:as=>:mine
     end
   end
   

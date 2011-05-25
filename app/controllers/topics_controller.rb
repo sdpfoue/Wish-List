@@ -66,10 +66,43 @@ class TopicsController < ApplicationController
         render :topics, :layout => false
       end
       format.js { render :index, :layout => false }
-    end    
-    
-    
+    end       
   end
+  
+  def mine
+    @current='mine'
+    @topics=Topic.where(:user_id=>session[:user_id])
+    render 'index'
+  end
+  
+  def replied
+    @current='replied'
+    @topics=Topic.where(:replier_ids=>session[:user_id])
+  end
+  
+  def marked
+    @current='marked'
+    @topics=Topic.where(:marker_ids=>session[:user_id])
+  end
+  
+  def mark
+    @topic = Topic.find params[:id]
+    @topic.mark_by current_user
+    respond_to do |format|
+      format.html {redirect_to @topic}
+      format.js
+    end
+  end
+  
+  def unmark
+    @topic = Topic.find params[:id]
+    @topic.unmark_by current_user
+    respond_to do |format|
+      format.html {redirect_to @topic}
+      format.js
+    end
+  end
+  
   
   def destory
   

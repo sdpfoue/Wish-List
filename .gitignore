@@ -5,3 +5,4 @@ tmp/
 *~
 public/images/*
 config/initializers/omniauth.rb
+nbproject/*

@@ -11,7 +11,7 @@ class Reply
   
   validates_presence_of :content
   
-  after_create :increment_counter
+  after_create :increment_counter, :add_replier_ids
   after_destroy :decrement_counter
   
   def increment_counter
@@ -20,6 +20,11 @@ class Reply
     topic.last_replied_at=created_at
     topic.save
   end
+  
+  def add_replier_ids
+    topic.reply_by self.user
+  end
+
   
   def decrement_counter
     topic.inc :replies_count, -1

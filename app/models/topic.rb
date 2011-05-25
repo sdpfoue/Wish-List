@@ -9,6 +9,8 @@ class Topic
   field :closed, :type => Boolean
   field :replies_count, :type => Integer, :default => 0
   field :last_replied_at, :type => Time
+  field :marker_ids, :type => Array
+  field :replier_ids, :type => Array
   belongs_to :last_replied_by, :class_name=>'User'
   
   attr_accessible :title, :content, :tags
@@ -33,6 +35,22 @@ class Topic
   
   def tags_string
     return tags.join(' ') unless tags.blank?
+  end
+  
+  def reply_by(user)
+    return if self.user_id == user.id
+    collection.update({:_id => self.id, :replier_ids => {"$ne" => user.id}},
+      {"$push" => {:replier_ids => user.id}})
+  end
+  
+  def mark_by(user)
+    collection.update({:_id => self.id, :marker_ids => {"$ne" => user.id}},
+      {"$push" => {:marker_ids => user.id}})
+  end
+
+  def unmark_by(user)
+    collection.update({:_id => self.id},
+      {"$pull" => {:marker_ids => user.id}})
   end
   
 end

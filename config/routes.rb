@@ -39,7 +39,15 @@ MongoSrc::Application.routes.draw do
     collection do
       get 'tag/:tag', :action => 'tag', :as => :tag, :constraints  => { :tag => /[^\/]+/ }, :format => false
       get 'mine', :action=>'mine',:as=>:mine
+      get 'replied', :action=>'replied', :as=>:replied
+      get 'marked', :action=>'marked', :as=>:marked
     end
+    
+    member do
+      get :mark
+      get :unmark
+    end
+    
   end
   
   resources :replies

@@ -1,65 +1,28 @@
-
-#sub-nav
-  %ul
-    %li{:class=>(@current == 'index' ? :current : nil)}
-      =link_to '茶馆',topics_url
-    %li
-      我发起的
-    %li
-      我回复过
-    %li{:class=>(@tag=='许愿墙'?:current : nil)}
-      =link_to '许愿墙', tag_topics_url(:tag=>'许愿墙')
-    %li
-      收藏
-    -if @tag&&@tag!='许愿墙'
-      %li{:class=>(@current == 'tag' ? :current : nil)}
-        =@tag
-.clear
+=render 'subnav'
 
 -if @topics.count==0
   该标签下还没有话题，
 =link_to '发起话题', new_topic_url
-#topics
-  -@topics.each do |topic|
-    .topic
-      .avatar=avatar_url topic.user
-      .summary
-        .reply_counter
-          =topic.replies_count
-          回复  
-        .title
-          =link_to topic.title, topic_url(topic)
-          -if topic.user_id==session[:user_id]
-            %span.del_button X
-        =link_to topic.user.name, user_url(topic.user)
-        创建于
-        =topic.created_at
-        %br
-        -if topic.last_replied_by
-          =link_to topic.last_replied_by.name, topic.last_replied_by
-          在
-          =topic.last_replied_at
-          最后回复        
-        .tags 
-          -topic.tags.each do |tag|
-            =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'
+
+=render 'topics'
             
 -content_for :rside do
-  -if @wishes.count==0
-    还没有标记为
-    %i=@tag
-    的愿望
-  -else
-    -if @tag
-      标记了
+  -if @tag
+    -if @wishes.count==0
+      还没有标记为
       %i=@tag
       的愿望
     -else
-      最新愿望
-    %ul
-      -@wishes.each do |wish|
-        %li
-          =link_to wish.name,wish_url(wish)
+      -if @tag
+        标记了
+        %i=@tag
+        的愿望
+      -else
+        最新愿望
+      %ul
+        -@wishes.each do |wish|
+          %li
+            =link_to wish.name,wish_url(wish)
         
         
 

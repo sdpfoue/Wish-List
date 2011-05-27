@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
       :expires => current_user.remember_token_expires_at }
   end
   
-  def current_logined?
-    !!current_user
+  def logedin?
+    !!session[:user_id]
   end
   
   def current_user

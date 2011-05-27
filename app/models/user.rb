@@ -14,6 +14,7 @@ class User
   field :reg_ip
   field :following_counter, :default=>0
   field :follower_counter, :default=>0
+  field :interested_tags, :type => Array
   
   attr_accessible :name, :email,:psd
   

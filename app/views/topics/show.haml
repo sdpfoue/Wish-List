@@ -19,8 +19,7 @@
       -@topic.tags.each do |tag|
         =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'
     -if @topic.marker_ids.to_a.include? session[:user_id]
-      #unmark_button
-        =link_to '已收藏', unmark_topic_url(@topic),:remote=>true
+      #unmark_button=link_to '已收藏', unmark_topic_url(@topic),:remote=>true,:title=>'取消收藏？'
     -else
       #mark_button
         =link_to '收藏', mark_topic_url(@topic),:remote=>true

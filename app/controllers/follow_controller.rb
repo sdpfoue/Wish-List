@@ -35,4 +35,11 @@ class FollowController < ApplicationController
       format.js {render 'fo.js.erb'}
     end
   end
+  
+  def fo_tag
+    
+  end
+  def unfo_tag
+    
+  end
 end

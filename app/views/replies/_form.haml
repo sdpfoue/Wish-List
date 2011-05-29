@@ -1,5 +1,11 @@
+
 =form_for(@reply) do |f|
-  =f.text_area(:content, :size => "60x6") 
+  #editor-button-bar
+  =f.text_area(:content, :size => "70x6") 
   =hidden_field_tag :topic,@topic.id.to_s
   %br
-  = submit_tag "放上去"
+  = submit_tag "放上去",:id=>'reply_submit'
+=javascript_include_tag 'nicEdit'
+:javascript
+  bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+

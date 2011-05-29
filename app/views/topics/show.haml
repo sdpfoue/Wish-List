@@ -14,7 +14,7 @@
         =link_to '编辑', edit_topic_url(@topic)
   .clear-both
     #topic-content
-      =@topic.content
+      =rich_text @topic.content
     #tags
       -@topic.tags.each do |tag|
         =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'
@@ -35,7 +35,7 @@
           -if reply.user_id==session[:user_id]
             =link_to '编辑', edit_topic_reply_url(@topic,reply)
           %br
-          =reply.content
+          =rich_text(reply.content)
         .clear-both
     -@topic.tags.each do |tag|
       =link_to tag, tag_topics_url(:tag=>tag),:class=>'tag'

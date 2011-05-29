@@ -41,5 +41,10 @@ module ApplicationHelper
     end
   end
   
+  def rich_text(content)
+    sanitize(raw(content), :tags => %w(ol li ul a span br font b i div strike p img),
+      :attributes=>%w(face href target color style src height width alt))
+  end
+  
   
 end

@@ -12,7 +12,7 @@
     %br/
     =f.label :content
     %br/
-    =f.text_area :content
+    =f.text_area :content,:size=>"70x10"
     %br
     =f.label :tags
     （至少要添加一个标签）
@@ -20,4 +20,7 @@
     = f.text_field :tags,:value=>@topic.tags_string
     .action
       =f.submit
+=javascript_include_tag 'nicEdit'
+:javascript
+  bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
     

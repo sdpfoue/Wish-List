@@ -21,11 +21,7 @@ a {
   cursor: pointer;
 }
 
-ul  {
-list-style-type: none;
-margin: 0;
-padding: 0;
-}
+
 #user-info .info ul li {
 display: inline;
 margin-right: 1em;
@@ -224,7 +220,7 @@ margin-top:15px;
 .reply{
 clear: both;
 border-bottom: 1px dashed #CCC;
-margin-top: 20px;
+padding-bottom: 20px;
 }
 .reply_counter{
 float:right;
@@ -296,4 +292,4 @@ text-decoration: none;
 #tags{float:left;
 
 }
-
+.reply-content{float:right;width:527px;}

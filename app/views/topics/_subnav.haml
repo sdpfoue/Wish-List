@@ -8,7 +8,7 @@
       =link_to '我回复过', replied_topics_url
     %li{:class=>(@current=='marked'? :current : nil)}
       =link_to '收藏', marked_topics_url
-    -if @tag&&@tag!='许愿墙'
+    -if @tag
       %li{:class=>(@current == 'tag' ? :current : nil)}
         =@tag
 .clear

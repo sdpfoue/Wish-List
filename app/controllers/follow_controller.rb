@@ -2,6 +2,7 @@
 
 class FollowController < ApplicationController
   #respond_to :js
+ 
   
   def fo
     @user=User.find(params[:id])
@@ -37,9 +38,21 @@ class FollowController < ApplicationController
   end
   
   def fo_tag
+    @user=User.find(session[:user_id])
+    @tag=params[:tag]
+    @user.add_interested_tags(@tag)
+    respond_to do |format|
+      format.html {redirect_to(tag_topics_url(:tag=>@tag))}
+      format.js
+    end
     
   end
   def unfo_tag
-    
+   @tag=params[:tag]
+    current_user.remove_interested_tags(@tag)
+    respond_to do |format|
+      format.html {redirect_to tag_topics_url(:tag=>@destroy_tag)}
+      format.js
+    end
   end
 end

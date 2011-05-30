@@ -1,0 +1,36 @@
+=render 'subnav'
+
+-if @topics.count==0
+  该标签下还没有话题，
+=link_to '发起话题', new_topic_url
+
+=render 'topics'
+            
+-content_for :rside do
+  #wish_list
+    -if @wishes.count==0
+      还没有标记为
+      %i=@tag
+      的愿望
+    -else
+      -if @tag
+        标记了
+        %i=@tag
+        的愿望
+      -else
+        最新愿望
+      %ul
+        -@wishes.each do |wish|
+          %li
+            =link_to wish.name,wish_url(wish)
+  #fo_tag_button
+    -if @current_user.interested_tags.to_a.include? @tag
+      已关注
+      =link_to @tag,unfo_tag_url,:class=>'tag',:remote=>true,:title=>"取消关注？"
+    -else
+      关注
+      =link_to @tag,fo_tag_url,:class=>'tag',:remote=>true
+
+        
+
+      

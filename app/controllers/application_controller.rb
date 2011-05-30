@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
   
   def current_user
-    @current_user ||= login_form_session || login_from_cookies || false if @current_user != false
+    @current_user ||= login_form_session 
     @current_user
   end
   

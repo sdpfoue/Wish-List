@@ -267,7 +267,7 @@ border-radius: 6px;
 }
 #sub-nav ul li.current a{
 color:#4b4742;
-}
+} 
 #mark_button a{float:right;
 display: inline-block;
 height: 14px;
@@ -293,3 +293,5 @@ text-decoration: none;
 
 }
 .reply-content{float:right;width:527px;}
+
+#wish_list{min-height:100px;}

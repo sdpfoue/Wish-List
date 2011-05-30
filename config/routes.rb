@@ -4,6 +4,8 @@ MongoSrc::Application.routes.draw do
   
   get 'follow/fo/:id', :action=>'fo',:controller=>'follow'
   get 'follow/unfo/:id', :action=>'unfo',:controller=>'follow'
+  get 'follow/fo_tag/:tag', :action=>'fo_tag', :controller=>'follow', :as=>'fo_tag'
+  get 'follow/unfo_tag/:tag', :action=>'unfo_tag', :controller=>'follow',:as=>'unfo_tag'
 
   get "/public-timeline", :action=>'publictimeline',:controller=>'index',:as=>'publictimeline'
   
@@ -41,6 +43,7 @@ MongoSrc::Application.routes.draw do
       get 'mine', :action=>'mine',:as=>:mine
       get 'replied', :action=>'replied', :as=>:replied
       get 'marked', :action=>'marked', :as=>:marked
+      get 'interested', :action=>'interested', :as=>:interested
     end
     
     member do

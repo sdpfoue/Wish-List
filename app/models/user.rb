@@ -2,6 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include Gravtastic
+  include StringExtensions
   gravtastic :rating => 'G', :size => 48
   
   field :name, :type => String
@@ -27,15 +28,14 @@ class User
   embeds_many :authorizations
   
   validates_presence_of :name, :email
-  #validates_presence_of :password, :if => Proc.new {|user| user.requrie_password?}
-  validates_presence_of :psd
-  validates_length_of :psd, :minimum => 6
+  validates_presence_of :psd,:if => Proc.new {|user| user.requrie_password?}
+  #validates_length_of :psd, :minimum => 6, :allow_blank => true
   validates_uniqueness_of :name, :email, :case_sensitive => false
   UsernameRegex = /\A\w{3,20}\z/
   validates_format_of :name, :with => UsernameRegex
   #validates_format_of :locale, :with => /\A(#{AllowLocale.join('|')})\Z/, :allow_blank => true
-  validates_presence_of :psd
-  validates_length_of :psd, :in => 6..20
+  #validates_presence_of :psd
+  validates_length_of :psd, :in => 6..20, :allow_blank => true
 
   
   def remember_me=(r)
@@ -110,6 +110,9 @@ class User
       end
     end
   end
+  def requrie_password?
+    new_record? or @recovering
+  end
   
   def get_auth(provider)
     authorizations.where(:provider=>provider).first
@@ -117,6 +120,20 @@ class User
   
   def self.get_users_by_name(userlist)
     any_in(name: userlist)   
+  end
+  
+  def add_interested_tags(tags)
+    @new_tags = parse_tags_from_string(tags) - interested_tags.to_a
+    self.interested_tags ||= []
+    self.interested_tags += @new_tags
+    #print interested_tags
+    save!
+  end
+  def remove_interested_tags(tags)
+    @destroy_tags = parse_tags_from_string(tags)
+    self.interested_tags -= @destroy_tags unless self.interested_tags==nil
+    #print interested_tags
+    save!
   end
   
 end

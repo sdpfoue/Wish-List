@@ -51,6 +51,7 @@ class TopicsController < ApplicationController
     @tag = params[:tag]
     @current='tag'
     @h1=@tag
+    @current_user=current_user
     @wishes=Wish.get_tagged_wishes(@tag,session[:user_id],session[:user_name])
     set_page_title(@tag)
     if params[:format] == 'rss'
@@ -60,7 +61,7 @@ class TopicsController < ApplicationController
     end
     
     respond_with(@topics) do |format|
-      format.html { render :index }
+      format.html
       format.rss  do
         @channel_link = tagged_topics_url(:tag => @tag)
         render :topics, :layout => false
@@ -101,6 +102,11 @@ class TopicsController < ApplicationController
       format.html {redirect_to @topic}
       format.js
     end
+  end
+  
+  def interested
+    @topics=Topic.where(:tags.in=>current_user.interested_tags.to_a).desc
+    @current='interested'
   end
   
   

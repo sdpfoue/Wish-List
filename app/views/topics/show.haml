@@ -1,6 +1,3 @@
--content_for :rside do
-  =link_to '回茶馆',topics_url
-
 %div
   .align-left.avatar
     =avatar_url @author
@@ -43,4 +40,21 @@
       我要回复：
       =render 'replies/form'
 
-  
+-content_for :rside do
+  =link_to '回茶馆',topics_url
+  -if @relate_topics.count>0
+    #relate_topics
+      相关话题
+      %ul
+        -@relate_topics.each do |rtopic|
+          %li
+            =link_to rtopic.title,topic_url(rtopic)
+            %span.author
+            ='('+rtopic.user.name+')'
+  -if @relate_wishes.count>0
+    #relate_wishes
+      相关愿望
+      %ul
+        -@relate_wishes.each do |wish|
+          %li
+            =link_to wish.name, wish_url(wish)

@@ -14,6 +14,8 @@ class TopicsController < ApplicationController
     @author=@topic.user
     @reply=Reply.new
     @replies=@topic.replies.all
+    @relate_topics=Topic.where(:tags.in=>@topic.tags.to_a)
+    @relate_wishes=Wish.where(:tags.in=>@topic.tags.to_a)
   end 
   
   def new

@@ -295,3 +295,7 @@ text-decoration: none;
 .reply-content{float:right;width:527px;}
 
 #wish_list{min-height:100px;}
+#relate_topics{margin-top: 20px;}
+#relate_topics ul{margin:0;padding:0;}
+#relate_wishes{margin-top:15px;}
+#relate_wishes ul{margin:0;padding:0;}

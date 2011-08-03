@@ -54,6 +54,7 @@ zh-CN:
         name: 愿望
         des: 愿望描述
         tags: 标签（必须以空格分开，最多5个标签）
+        url: 参考链接
       user:
         name: 用户名
         email: E-mail

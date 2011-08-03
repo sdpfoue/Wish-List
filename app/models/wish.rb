@@ -5,14 +5,16 @@ class Wish
   
   field :name, :type => String
   field :des, :type => String
+  field :url
   field :tags, :type=>Array
   
   field :comments_counter, :type=>Integer, :default=>0
   
-  attr_accessible :name, :des, :tags
+  attr_accessible :name, :des, :tags, :url
   
   validates_presence_of :name, :des#, :tags
   validates_length_of :tags, :maximum => 5
+  validates_format_of :url, :with => /^(#{URI::regexp(%w(http https))})$|^$/ , :allow_blank => true
   
   embeds_many :comments, :class_name=>'Comment::Wish',:dependent=>:delete
   references_many :timeline, :class_name=>'Timeline::Wish', :dependent=>:delete #delete

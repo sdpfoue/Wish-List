@@ -299,3 +299,19 @@ text-decoration: none;
 #relate_topics ul{margin:0;padding:0;}
 #relate_wishes{margin-top:15px;}
 #relate_wishes ul{margin:0;padding:0;}
+
+.button{
+font-size: 12px;
+font-weight: bold;
+cursor: pointer;
+padding: 5px 10px 6px 10px;
+box-shadow: 0px 0px 6px #000;
+border-radius: 6px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+background-color: #EFEFEF;
+border: 1px solid #CCC;
+color: #666;
+}
+.button:hover{background-color:#dff4ff;border:1px
+solid #c2e1ef;color:#369}

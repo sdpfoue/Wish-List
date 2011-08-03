@@ -15,9 +15,13 @@
     %br/
     =f.text_area :des
     %br
+    =f.label :url
+    %br
+    =f.text_field :url
+    %br
     =f.label :tags
     %br
     = f.text_field :tags, :value=>@wish.tags_string
     .action
-      =f.submit
+      =f.submit :class=>'button'
     

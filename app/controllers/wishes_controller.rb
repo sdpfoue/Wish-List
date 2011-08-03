@@ -31,7 +31,7 @@ class WishesController < ApplicationController
   
   def update
     @wish = Wish.find(params[:id])
-    redirect_to(user_spaces_url(session[:user_id]),:notice=>'不要搞破坏哦') and return unless @wish[:user_id]==session[:user_id]
+    render_404 and return unless @wish[:user_id]==session[:user_id]
 
     if @wish.update_attributes(params[:wish])
       redirect_to(@wish, :notice => '修改成功') 
